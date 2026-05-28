@@ -1,0 +1,34 @@
+# Open-Generative-AI - Project aliases and functions
+# All commands defined here, sourced by .salias
+# Run 'help' to see all available commands
+
+# ── Help ──
+function help
+    clear
+    cat /home/dev/work/media/Open-Generative-AI/.salias_help.txt
+end
+
+# ── Fork Sync ──
+function gitupdate --description "Sync fork from upstream: ff main, rebase mryan, push both"
+    set -l current (git branch --show-current)
+
+    echo "Fetching upstream..."
+    git fetch upstream; or return 1
+
+    echo "Updating main (mirror)..."
+    git checkout main; or return 1
+    git merge upstream/main --ff-only; or begin
+        echo "ff-only failed: main has drifted from upstream. Move stray commits to mryan."
+        return 1
+    end
+    git submodule update --init --recursive
+    git push origin main
+
+    echo "Rebasing mryan onto main..."
+    git checkout mryan
+    git rebase main
+    git push origin mryan --force-with-lease
+
+    git checkout $current
+    echo "Synced: main mirrors upstream, mryan rebased on top."
+end

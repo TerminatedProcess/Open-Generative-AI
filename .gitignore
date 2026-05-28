@@ -36,3 +36,6 @@ out/
 .env
 .env.*
 !.env.example
+
+# Personal Claude Code config (machine-specific skill symlinks)
+.claude/
