@@ -8,6 +8,27 @@ function help
     cat /home/dev/work/media/Open-Generative-AI/.salias_help.txt
 end
 
+# ── Setup ──
+alias setup='npm run setup'
+
+# ── Dev servers ──
+alias dev='npm run dev'
+alias edev='npm run electron:dev'
+
+# ── Build ──
+alias build='npm run build'
+alias bpkg='npm run build:packages'
+alias bstudio='npm run build:studio'
+alias ebuild='npm run electron:build:linux'
+
+# ── Production / lint ──
+alias serve='npm run start'
+alias lint='npm run lint'
+
+# ── Tests ──
+# 'test' is a fish builtin — using 'tests' to avoid shadowing it
+alias tests='node --test tests/'
+
 # ── Fork Sync ──
 function gitupdate --description "Sync fork from upstream: ff main, rebase mryan, push both"
     set -l current (git branch --show-current)

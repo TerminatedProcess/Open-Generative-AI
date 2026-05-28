@@ -1,2 +1,22 @@
+SETUP (one-time, or after submodule updates)
+  setup             clone submodules, install deps, build workspace packages
+
+DEV SERVERS
+  dev               Next.js hosted web UI at http://localhost:3000
+  edev              Electron desktop app (vite build + electron, supports local AI)
+
+BUILD
+  build             Next.js production build
+  bpkg              rebuild all workspace packages (run after editing packages/*)
+  bstudio           rebuild packages/studio only
+  ebuild            build Linux desktop installer (release/)
+
+PRODUCTION / LINT
+  serve             run Next.js production server (requires `build` first)
+  lint              Next.js lint
+
+TESTS
+  tests             run node:test suite in tests/
+
 FORK SYNC
   gitupdate         ff main from upstream, rebase mryan, push both
